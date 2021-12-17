@@ -66,7 +66,7 @@ custom-modules folder:
 ```
 vi requirements.txt
 ```
-* This is what my file looks like:
+* This is what the contents of my file requirements.txt looks like:
 
 ```
 azure-functions
