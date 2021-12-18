@@ -48,12 +48,12 @@ cd MyFunctionProject
 func new --name HttpExample --template "HTTP trigger" --authlevel "anonymous"
 ```
 
-* My custom package is really simple and is called davpopackage, with a single module called davpo_module. It contains a single function "return_fortytwo()"
+My custom package is really simple and is called davpopackage, with a single module called davpo_module. It contains a single function "return_fortytwo()"
 that returns the number 42.
 
-* Now if I update the function to import the custom module and access the function, I can call "func start" and it will already work without any problems because the custom package is installed into the environment I'm using while I'm executing the function. 
+Now if I update the function to import the custom module and access the function, I can call "func start" and it will already work without any problems because the custom package is installed into the environment I'm using while I'm executing the function core tools.
 
-Next to add the custom package in a way that can be built and exported to Azure...
+Next to add the custom package in a way that can be built and deployed to Azure along with the rest of the function's dependencies...
 
 * cd back up to the top level folder (in my case project-function-custom) and create a requirements.txt file (note this is seperate from the one in the actual MyFunctionProject folder):
 ```
@@ -61,7 +61,7 @@ cd ..
 touch requirements.txt
 ```
 
-* edit the temporary requirements.txt file to include the dependencies we need building into the deployable artifact, including the WHL file in the 
+* edit the temporary requirements.txt file to include all the dependencies we need building into the deployable artifact, including the WHL file in the 
 custom-modules folder:
 ```
 vi requirements.txt
@@ -73,12 +73,12 @@ azure-functions
 ./custom-modules/example_pkg_davpo-0.0.1-py3-none-any.whl
 ```
 
-* Now run the command that publishes these dependencies into the folder MyFunctionProject/.python_packages:
+* Now run the command that publishes these dependencies into the folder MyFunctionProject/.python_packages. The location of this folder is key:
 ```
 pip install  --target="MyFunctionProject/.python_packages/lib/site-packages"  -r requirements.txt
 ```
 
-* Now we are ready to do the deployment with the no-build flag. Assuming you are logged in correctly with "az login" and the function app name in Azure is davpo-demo-python:
+* Now we are ready to do the deployment with the no-build flag which will deploy the project as-is, including all the project dependencies (in the .python_packages folder). Assuming you are logged in correctly with "az login" and the function app name in Azure is davpo-demo-python:
 ```
 cd MyFunctionProject
 func azure functionapp publish davpo-demo-python --no-build
