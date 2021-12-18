@@ -84,4 +84,4 @@ cd MyFunctionProject
 func azure functionapp publish davpo-demo-python --no-build
 ```
 
-__At this point the function should deploy with its dependencies and be executable. The example here calls the "return_fortytwo()" function that exists in the custom package deployed up to Azure.__
+__At this point the function should deploy with its dependencies and be executable. The example function here calls the "return_fortytwo()" function that exists in the custom package deployed up to Azure.__
