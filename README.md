@@ -1,5 +1,5 @@
 # python-function-custom
-Example of how to build and deploy a Python function with custom dependencies.
+Example of how to build and deploy a Python based Azure Function with custom dependencies.
 
 # The steps:
 
